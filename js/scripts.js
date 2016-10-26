@@ -38,7 +38,6 @@ function firstVowel(word) {
       indexCounter++;
     }
   });
-
   return indexCounter;
 }
 
@@ -69,26 +68,27 @@ function appendSuffix(string) {
   } else if (isVowel(string[0])) {
     return string + "ay";
   } else if (isLetter(string[0])) {
-    // if (string.slice(0, 2).toLowerCase() === "qu") {
-    //   firstLetter = string.slice(0, 2);
-    //   var newWord = string.slice(2, string.length);
-    //   newWord += firstLetter;
-    //   return newWord + "ay";
-    // } else {
     console.log(firstVowel(string));
     var moveLetters = string.slice(0, firstVowel(string));
     console.log(firstVowel(string));
     var newWord = string.slice(firstVowel(string), string.length);
     newWord += moveLetters;
     return newWord + "ay";
-    //};
   };
 };
+function arrayConversion(string){
+  var sentenceArray = string.split(" "); // open bracket is a split on space
+  var latinArray = sentenceArray.map(function(word){
+    return appendSuffix(word);
+  })
+  var latinSentence = latinArray.join(" ");
+  return latinSentence;
+}
 
 
 $(document).ready(function(){
   $("form").submit(function(event){
     event.preventDefault();
-    console.log(appendSuffix($("#input").val()));
+    console.log(arrayConversion($("#input").val()));
   });
 });
