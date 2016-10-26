@@ -4,10 +4,13 @@ var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "
 function isLetter(character) {
   var valid = false;
   letterArray.forEach(function(letter) {
-    if (character.toLowerCase() === letter) {
+    if (character === letter) {
+      valid = true;
+    } else if (character === letter.toUpperCase()) {
       valid = true;
     }
   });
+
   if (valid) {
     return true;
   } else {
@@ -33,8 +36,7 @@ function firstVowel(word) {
       } else if (!indexFound) {
         indexCounter++;
       }
-    }
-    else if (!indexFound) {
+    } else if (!indexFound) {
       indexCounter++;
     }
   });
@@ -44,7 +46,9 @@ function firstVowel(word) {
 function isVowel(character) {
   var valid = false;
   vowelArray.forEach(function(vowel) {
-    if (character.toLowerCase() === vowel) {
+    if (character === vowel) {
+      valid = true;
+    } else if (character === vowel.toUpperCase()) {
       valid = true;
     }
   });
@@ -59,16 +63,30 @@ function appendSuffix(word) {
   var punctuation = hasPunctuation(word);
   var justWord;
   var punctuationMark = "";
+  var leadingNonLetter = "";
   if (punctuation) {
-    punctuationMark = word[word.length-1];
-    justWord = word.slice(0, word.length-1);
+    if (word.length === 1) {
+      return word;
+    } else {
+      punctuationMark = word[word.length-1];
+      justWord = word.slice(0, word.length-1);
+      console.log(justWord);
+    }
   } else {
     justWord = word;
   }
   if (justWord.length === 1) {
     if (isLetter(justWord)) {
       return justWord + "ay" + punctuationMark;
+    } else {
+      return justWord + punctuationMark;
     };
+  } else if (!isLetter(justWord[0])) {
+    leadingNonLetter = justWord[0];
+    var moveLetters = justWord.slice(1, firstVowel(justWord));
+    var newWord = justWord.slice(firstVowel(justWord), justWord.length);
+    newWord += moveLetters;
+    return leadingNonLetter + newWord + "ay" + punctuationMark;
   } else if (isVowel(justWord[0])) {
     return justWord + "ay" + punctuationMark;
   } else if (isLetter(justWord[0])) {
@@ -100,6 +118,7 @@ function withoutPunctuation(word) {
 $(document).ready(function(){
   $("form").submit(function(event){
     event.preventDefault();
-    console.log(arrayConversion($("#input").val())); //needed to print to inspect CONSOLE//
+
+    $("#output").text(arrayConversion($("#input").val()));
   });
 });
