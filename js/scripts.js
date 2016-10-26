@@ -40,17 +40,25 @@ function isVowel(character) {
 }
 
 function appendSuffix(string) {
+  var firstLetter;
   if (string.length === 1) {
-    if (isVowel(string)) {
+    if (isLetter(string)) {
       return string + "ay";
-    }
-  }
+    };
+  } else if (isVowel(string[0])) {
+    return string + "ay";
+  } else if (isLetter(string[0])) {
+    firstLetter = string[0];
+    var newWord = string.slice(1, string.length);
+    newWord += firstLetter;
+    return newWord + "ay";
+  };
 }
 
 
 $(document).ready(function(){
   $("form").submit(function(event){
     event.preventDefault();
-    console.log(appendSuffix($("#input").val()[0]));
+    console.log(appendSuffix($("#input").val()));
   });
 });
