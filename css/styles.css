@@ -1,0 +1,22 @@
+h1 {
+  font-family: cursive;
+  font-size: 55px;
+  text-align: center;
+  font-weight: bolder;
+
+}
+
+#output {
+  margin: 50px;
+  text-align: justify;
+}
+
+p{
+  font-size: 25px;
+  color: red;
+  font-weight: bolder;
+}
+
+.jumbotron {
+  background-color: gold;
+}

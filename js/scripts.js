@@ -70,7 +70,6 @@ function appendSuffix(word) {
     } else {
       punctuationMark = word[word.length-1];
       justWord = word.slice(0, word.length-1);
-      console.log(justWord);
     }
   } else {
     justWord = word;
