@@ -44,15 +44,10 @@ function firstVowel(word) {
 function isVowel(character) {
   var valid = false;
   vowelArray.forEach(function(vowel) {
-    if (character === vowel) {
+    if (character.toLowerCase() === vowel) {
       valid = true;
     }
   });
-  vowelArray.forEach(function(vowel) {
-    if (character === vowel.toUpperCase()) {
-      valid = true;
-    }
-  })
   if (valid) {
     return true;
   } else {
@@ -60,22 +55,30 @@ function isVowel(character) {
   }
 }
 
-function appendSuffix(string) {
-  if (string.length === 1) {
-    if (isLetter(string)) {
-      return string + "ay";
+function appendSuffix(word) {
+  var punctuation = hasPunctuation(word);
+  var justWord;
+  var punctuationMark = "";
+  if (punctuation) {
+    punctuationMark = word[word.length-1];
+    justWord = word.slice(0, word.length-1);
+  } else {
+    justWord = word;
+  }
+  if (justWord.length === 1) {
+    if (isLetter(justWord)) {
+      return justWord + "ay" + punctuationMark;
     };
-  } else if (isVowel(string[0])) {
-    return string + "ay";
-  } else if (isLetter(string[0])) {
-    console.log(firstVowel(string));
-    var moveLetters = string.slice(0, firstVowel(string));
-    console.log(firstVowel(string));
-    var newWord = string.slice(firstVowel(string), string.length);
+  } else if (isVowel(justWord[0])) {
+    return justWord + "ay" + punctuationMark;
+  } else if (isLetter(justWord[0])) {
+    var moveLetters = justWord.slice(0, firstVowel(justWord));
+    var newWord = justWord.slice(firstVowel(justWord), justWord.length);
     newWord += moveLetters;
-    return newWord + "ay";
+    return newWord + "ay" + punctuationMark;
   };
 };
+
 function arrayConversion(string){
   var sentenceArray = string.split(" "); // open bracket is a split on space
   var latinArray = sentenceArray.map(function(word){
@@ -85,10 +88,18 @@ function arrayConversion(string){
   return latinSentence;
 }
 
+function hasPunctuation(word) {
+  return !isLetter(word[word.length-1]);
+};
+
+function withoutPunctuation(word) {
+  return word.slice(0, word.length-1);
+}
+
 
 $(document).ready(function(){
   $("form").submit(function(event){
     event.preventDefault();
-    console.log(arrayConversion($("#input").val()));
+    console.log(arrayConversion($("#input").val())); //needed to print to inspect CONSOLE//
   });
 });
