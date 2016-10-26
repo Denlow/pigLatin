@@ -3,12 +3,16 @@ h1 {
   font-size: 55px;
   text-align: center;
   font-weight: bolder;
+}
 
+#input {
+  font-size: 25px;
 }
 
 #output {
   margin: 50px;
   text-align: justify;
+  font-size: 30px;
 }
 
 p{

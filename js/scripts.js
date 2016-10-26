@@ -1,17 +1,5 @@
-var vowelArray = ["a", "e", "i", "o", "u"];
-var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
 function isLetter(character) {
-  var valid = false;
-  letterArray.forEach(function(letter) {
-    if (character === letter) {
-      valid = true;
-    } else if (character === letter.toUpperCase()) {
-      valid = true;
-    }
-  });
-
-  if (valid) {
+  if (character.match(/[a-zA-Z]/g)) { //regex "if characters are such THEN..."
     return true;
   } else {
     return false;
@@ -44,15 +32,7 @@ function firstVowel(word) {
 }
 
 function isVowel(character) {
-  var valid = false;
-  vowelArray.forEach(function(vowel) {
-    if (character === vowel) {
-      valid = true;
-    } else if (character === vowel.toUpperCase()) {
-      valid = true;
-    }
-  });
-  if (valid) {
+  if (character.match(/[aeiouAEIOU]/g)) { //regex "if characters are such THEN..."
     return true;
   } else {
     return false;
