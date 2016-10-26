@@ -20,10 +20,37 @@ function isLetter(character) {
   }
 }
 
+function isVowel(character) {
+  var valid = false;
+  vowelArray.forEach(function(vowel) {
+    if (character === vowel) {
+      valid = true;
+    }
+  });
+  vowelArray.forEach(function(vowel) {
+    if (character === vowel.toUpperCase()) {
+      valid = true;
+    }
+  })
+  if (valid) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function appendSuffix(string) {
+  if (string.length === 1) {
+    if (isVowel(string)) {
+      return string + "ay";
+    }
+  }
+}
+
 
 $(document).ready(function(){
   $("form").submit(function(event){
     event.preventDefault();
-    console.log(isLetter($("#input").val()[0]));
+    console.log(appendSuffix($("#input").val()[0]));
   });
 });
