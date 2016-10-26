@@ -4,15 +4,10 @@ var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "
 function isLetter(character) {
   var valid = false;
   letterArray.forEach(function(letter) {
-    if (character === letter) {
+    if (character.toLowerCase() === letter) {
       valid = true;
     }
   });
-  letterArray.forEach(function(letter) {
-    if (character === letter.toUpperCase()) {
-      valid = true;
-    }
-  })
   if (valid) {
     return true;
   } else {
@@ -48,12 +43,19 @@ function appendSuffix(string) {
   } else if (isVowel(string[0])) {
     return string + "ay";
   } else if (isLetter(string[0])) {
-    firstLetter = string[0];
-    var newWord = string.slice(1, string.length);
-    newWord += firstLetter;
-    return newWord + "ay";
+    if (string.slice(0, 2).toLowerCase() === "qu") {
+      firstLetter = string.slice(0, 2);
+      var newWord = string.slice(2, string.length);
+      newWord += firstLetter;
+      return newWord + "ay";
+    } else {
+      firstLetter = string[0];
+      var newWord = string.slice(1, string.length);
+      newWord += firstLetter;
+      return newWord + "ay";
+    };
   };
-}
+};
 
 
 $(document).ready(function(){
