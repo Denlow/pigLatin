@@ -1,30 +1,29 @@
 var vowelArray = ["a", "e", "i", "o", "u"];
+var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-
-
-function getVowels(string){
-  var vowelCount = 0;
-  vowelArray.forEach(function(vowel){
-    if (vowel === string[0]){
-      vowelCount ++;
-
+function isLetter(character) {
+  var valid = false;
+  letterArray.forEach(function(letter) {
+    if (character === letter) {
+      valid = true;
     }
-
+  });
+  letterArray.forEach(function(letter) {
+    if (character === letter.toUpperCase()) {
+      valid = true;
+    }
   })
-  return vowelCount;
+  if (valid) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 
-
-
-
-
 $(document).ready(function(){
-
   $("form").submit(function(event){
-    console.log(getVowels($("#input").val()));
     event.preventDefault();
+    console.log(isLetter($("#input").val()[0]));
   });
-
-
 });
