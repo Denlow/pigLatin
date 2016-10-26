@@ -1,18 +1,27 @@
 The program does nothing to non-alphabetical characters, since they do not contain consonants or vowels.
   Example Input: 3
   Example Output: 3
+
 The program adds "ay" to single-letter words beginning with a vowel.
   Example Input: i
   Example Output: iay
+
 The program recognizes when a word doesn't begin with a vowel.
   Example Input: run
   Example Output: true
+
 The program moves the leading consonant to the end before adding "ay".
   Example Input: run
   Example Output: unray
+
 The program can identify if the leading character is still a consonant after moving the first one.
   Example Input: Stretch
   Example Output: etchstray
+
 The program can apply to multiple words.
   Example Input: Run away
   Example Output: unray awayay
+
+The program can handle punctuation.
+  Example input: Run away!
+  Example Output: unray awayay!
